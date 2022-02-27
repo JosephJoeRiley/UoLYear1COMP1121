@@ -23,8 +23,7 @@ Question 1: Complete the query for vCustomerPerEmployee.
 WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vCustomerPerEmployee AS"
 ============================================================================
 */
-CREATE VIEW vCustomerPerEmployee  AS
---Remove this line and complete your query for question 1 here
+CREATE VIEW vCustomerPerEmployee  AS 
 
 
 
@@ -35,7 +34,7 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW v10WorstSellingGenres AS"
 ============================================================================
 */
 CREATE VIEW v10WorstSellingGenres  AS
---Remove this line and complete your query for question 2 here
+
 
 
 
@@ -47,7 +46,7 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vBestSellingGenreAlbum AS"
 ============================================================================
 */
 CREATE VIEW vBestSellingGenreAlbum  AS
---Remove this line and complete your query for question 3 here
+
 
 
 
@@ -60,6 +59,7 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW v10BestSellingArtists AS"
 */
 
 CREATE VIEW v10BestSellingArtists AS
+
 --Remove this line and complete your query for question 4 here
 
 
@@ -72,4 +72,5 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vTopCustomerEachGenre AS"
 ============================================================================
 */
 CREATE VIEW vTopCustomerEachGenre AS
+
 --Remove this line and complete your query for question 5 here
