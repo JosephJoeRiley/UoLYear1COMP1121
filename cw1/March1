@@ -1,0 +1,15 @@
+SELECT 
+    g.Name AS Genre,
+	al.Title AS Album,
+	ar.name AS Artist,
+	i.Quantity AS Sales
+FROM albums al
+INNER JOIN genres g
+ON (t.GenreId = g.GenreId)
+LEFT OUTER JOIN tracks t
+ON (t.GenreId = g.GenreId AND t.AlbumId = al.AlbumId)
+INNER JOIN artists ar
+ON (al.ArtistId = ar.ArtistId)
+INNER JOIN invoice_items i 
+ON (t.TrackId = i.TrackId)
+ORDER BY Sales ASC;
