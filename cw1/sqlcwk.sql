@@ -54,7 +54,17 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW v10WorstSellingGenres AS"
 ============================================================================
 */
 CREATE VIEW v10WorstSellingGenres  AS
-
+SELECT 
+	g.name, 
+	COUNT(i.Quantity) Sales 
+FROM genres g
+LEFT OUTER JOIN tracks t
+ON (g.GenreId = t.GenreId)
+LEFT OUTER JOIN invoice_items i
+ON (t.TrackId = i.TrackId)
+GROUP BY t.GenreId
+ORDER BY Sales ASC
+LIMIT 10;
 
 
 
@@ -66,8 +76,31 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vBestSellingGenreAlbum AS"
 ============================================================================
 */
 CREATE VIEW vBestSellingGenreAlbum  AS
-
-
+SELECT 
+	Genre, 
+	Album, 
+	Artist, 
+	MAX(Sales) AS Sales
+FROM
+(SELECT
+	g.GenreId AS Id,
+    g.Name AS Genre,
+	al.Title AS Album,
+	ar.name AS Artist,
+	COUNT(i.Quantity) AS Sales
+FROM invoice_items i
+JOIN tracks t
+ON i.TrackId = t.TrackId
+JOIN albums al
+ON t.AlbumId = al.AlbumId
+JOIN artists ar
+ON al.ArtistId = ar.ArtistId
+JOIN genres g
+ON t.GenreId = g.GenreId
+GROUP BY t.GenreId, al.AlbumId
+ORDER BY Sales DESC)
+GROUP BY Genre
+ORDER BY Id;
 
 
 /*
@@ -79,7 +112,7 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW v10BestSellingArtists AS"
 */
 
 CREATE VIEW v10BestSellingArtists AS
-
+SELECT * FROM artists;
 --Remove this line and complete your query for question 4 here
 
 
@@ -92,5 +125,5 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vTopCustomerEachGenre AS"
 ============================================================================
 */
 CREATE VIEW vTopCustomerEachGenre AS
-
+SELECT * FROM genres;
 --Remove this line and complete your query for question 5 here
