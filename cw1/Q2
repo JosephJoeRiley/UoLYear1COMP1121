@@ -1,0 +1,4 @@
+SELECT 
+	* 
+FROM genres g
+LEFT OUTER JOIN ;	
