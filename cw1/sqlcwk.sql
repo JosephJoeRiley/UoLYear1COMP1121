@@ -112,8 +112,34 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW v10BestSellingArtists AS"
 */
 
 CREATE VIEW v10BestSellingArtists AS
-SELECT * FROM artists;
---Remove this line and complete your query for question 4 here
+SELECT
+                AlbumSales.Artist,
+                AlbumSales.TotalAlbum,
+                TrackSales.TotalTrackSales
+FROM
+ (SELECT
+	COUNT(invoice_items.Quantity) TotalTrackSales,
+    artists.ArtistId Artist
+FROM tracks
+JOIN invoice_items
+	ON tracks.TrackId = invoice_items.TrackId
+JOIN albums
+    ON  albums.AlbumId = tracks.AlbumId
+JOIN artists
+	ON artists.ArtistId = albums.ArtistId
+GROUP BY albums.ArtistId
+) TrackSales
+JOIN (SELECT DISTINCT
+    artists.Name Artist,
+    artists.ArtistId,
+    COUNT(*) TotalAlbum
+FROM albums
+JOIN artists
+ON albums.ArtistId = artists.ArtistId
+GROUP BY albums.ArtistId) AlbumSales
+ON AlbumSales.ArtistId = TrackSales.Artist
+ORDER BY TotalTrackSales DESC
+LIMIT 10;
 
 
 
@@ -126,4 +152,3 @@ WARNNIG: DO NOT REMOVE THE STATEMENT "CREATE VIEW vTopCustomerEachGenre AS"
 */
 CREATE VIEW vTopCustomerEachGenre AS
 SELECT * FROM genres;
---Remove this line and complete your query for question 5 here
